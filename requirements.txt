@@ -1,0 +1,4 @@
+https://github.com/shoopio/shoop/releases/download/v3.0.0/shoop-3.0.0-py2.py3-none-any.whl
+-e .
+#PyYAML==3.11
+#beautifulsoup4==4.4.1
