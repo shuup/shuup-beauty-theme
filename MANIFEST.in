@@ -1,0 +1,4 @@
+include README.rst
+include LICENSE
+
+recursive-include shoop_simple_theme *.ico *.png *.jinja
