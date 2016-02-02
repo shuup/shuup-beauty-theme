@@ -7,7 +7,7 @@
     <title>{% block title %}{% trans %}Base{% endtrans %}{% endblock %} &ndash; Nicca</title>
     {% block extrameta %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ static("nicca/img/favicon.ico") }}?v2">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arimo:400,700|Raleway:400,300,500,700,900">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans:400,600">
     <link rel="stylesheet" type="text/css" href="{{ static("nicca/css/style.css") }}">
 </head>
 <body>
@@ -28,15 +28,6 @@
     <a href="#" id="scroll_top" class="scroll-top-btn" data-toggle="tooltip" data-placement="left" title="Scroll to top">
         <i class="fa fa-angle-up"></i>
     </a>
-
-    <div class="page-loader-wrap">
-         <div class="ajax-loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <p>{% trans %}Loading{% endtrans %}</p>
-        </div>
-    </div>
 
     {% include "shoop/front/includes/_navigation.jinja" %}
 
