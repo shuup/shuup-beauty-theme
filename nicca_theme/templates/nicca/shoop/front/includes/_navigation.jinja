@@ -2,10 +2,10 @@
 
     <div class="top-nav">
     <div class="container">
-        <ul class="pull-left">
-            <li><a href="#"><span class="text hidden-xs">Ammattilainen, kirjaudu sisään tästä</span></a></li>
+        <ul class="nav-left">
+            <li><a href="#"><span class="text hidden-xs">{% trans %}Professional beautician, log in here{% endtrans %} <i class="fa fa-angle-double-right"></i></span></a></li>
         </ul>
-        <ul class="pull-right" id="navigation-basket-partial">
+        <ul class="nav-right">
             {% if user.is_authenticated() %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -89,7 +89,9 @@
                     </ul>
                 </li>
             {% endif %}
-            {% include "classic_gray/navigation_basket_partial.jinja" with context %}
+            <li class="dropdown cart" id="navigation-basket-partial">
+                {% include "nicca/navigation_basket_partial.jinja" with context %}
+            </li>
         </ul>
     </div>
 </div>

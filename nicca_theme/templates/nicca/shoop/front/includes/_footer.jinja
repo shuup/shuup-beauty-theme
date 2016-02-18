@@ -3,50 +3,49 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-3">
-                    <h4 class="underline">Kategoriat</h4>
+                    <h4 class="underline">{% trans %}Categories{% endtrans %}</h4>
                     <ul>
-                        <li><a href="#">Hiustuotteet</a></li>
-                        <li><a href="#">Ripset</a></li>
-                        <li><a href="#">Kalusteet</a></li>
-                        <li><a href="#">Kynnet</a></li>
-                        <li><a href="#">Hiustenpidennykset</a></li>
-                        <li><a href="#">Kauneudenhoito</a></li>
-                        <li><a href="#">Muut</a></li>
-                        <li><a href="#">Tarjoukset</a></li>
-                        </li>
+                        <li><a href="#">{% trans %}Hair products{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Eyelashes{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Equipment{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Nails{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Hair extensions{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Beauty care{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Other{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Offers{% endtrans %}</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <h4 class="underline">{% trans %}Noutomyymälä{% endtrans %}</h4>
+                    <h4 class="underline">{% trans %}Store{% endtrans %}</h4>
                     <ul>
-                        <li><a href="#">Pihatörmä 1B</a></li>
-                        <li><a href="#">02240 Espoo, Länsikeskus</a></li>
+                        <li>{% trans %}Default street 1{% endtrans %}</li>
+                        <li>{% trans %}00100 Helsinki, Finland{% endtrans %}</li>
                     </ul>
-                    <h4 class="underline">{% trans %}Tilaukset/Asiakaspalvelu{% endtrans %}</h4>
+                    <h4 class="underline">{% trans %}Orders/customer service{% endtrans %}</h4>
                     <ul>
-                        <li><a href="#">044-347 7799</a></li>
+                        <li><a href="#">+358 00 123 45 67</a></li>
                     </ul>
-                    <h4 class="underline">{% trans %}Avoinna{% endtrans %}</h4>
+                    <h4 class="underline">{% trans %}Opening hours{% endtrans %}</h4>
                     <ul>
-                        <li><a href="#">ma-ti 8-17</a></li>
-                        <li><a href="#">ke 8-19</a></li>
-                        <li><a href="#">to-pe 8-16</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <h4 class="underline">{% trans %}Tietoa meistä{% endtrans %}</h4>
-                    <ul>
-                        <li><a href="#">Ota meihin yhteyttä</a></li>
-                        <li><a href="#">Tietoa meistä</a></li>
-                        <li><a href="#">Toimitukset ja palautukset</a></li>
-                        <li><a href="#">Rekisteriseloste</a></li>
-                        <li><a href="#">Maksutavat</a></li>
-                        <li><a href="#">Toimitusehdot</a></li>
-                        <li><a href="#">Tilaa uutiskirje</a></li>
+                        <li>{% trans %}Mon-Tue: 8:00 am &ndash; 5:00 pm{% endtrans %}</li>
+                        <li>{% trans %}Wed: 8:00 am &ndash; 7:00 pm{% endtrans %}</li>
+                        <li>{% trans %}Thu-Fri 8:00 am &ndash; 4:00 pm{% endtrans %}</li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-3">
-                    <h4 class="underline">{% trans %}Maksutavat{% endtrans %}</h4>
+                    <h4 class="underline">{% trans %}About us{% endtrans %}</h4>
+                    <ul>
+                        <li><a href="#">{% trans %}Contact us{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}About us{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Delivery & Refund{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Privacy policy{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Payment methods{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Delivery terms{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}Subscribe for newsletter{% endtrans %}</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <h4 class="underline">{% trans %}Payment methods{% endtrans %}</h4>
                     <img src="{{ STATIC_URL }}nicca/img/nicca-maksutavat.png">
                 </div>
             </div>
@@ -56,7 +55,7 @@
         <div class="container">
             <div class="row">
                 <ul>
-                    <li>Copyright <i class="fa fa-copyright"></i> 2016 Nicca</a></li>
+                    <li>{% trans %}Copyright{% endtrans %} <i class="fa fa-copyright"></i> {% trans %}2016 Shoop{% endtrans %}</a></li>
                 </ul>
             </div>
         </div>

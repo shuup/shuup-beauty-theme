@@ -20,7 +20,7 @@
 {% block content_title %}{% endblock %}
 
 {% block breadcrumb %}
-    <div class="container breadcrumb-wrap">
+    <div class="container">
         <ol class="breadcrumb">
             <li><a href="/">{% trans %}Home{% endtrans %}</a></li>
             {% set category = shop_product.primary_category %}
@@ -36,14 +36,14 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row product-main">
+    <div class="container product-page">
+        <div class="row">
 
-            <div class="product-image">
+            <div class="product-image col-md-6">
                 {% include "shoop/front/product/_product_image.jinja" %}
             </div>
 
-            <div class="product-info">
+            <div class="product-info col-md-6">
                 <h1>{{ product.name }}</h1>
                 <div class="sku">
                     <p class="text-muted"><small>{{ product.sku }}</small></p>
@@ -63,13 +63,6 @@
                     </div>
                 {% endif %}
                 <hr>
-                {# TODO: Check the stock balance and then show things underneath according to the value
-                <div class="in-stock">
-                    <p class="available"><i class="fa fa-check"></i>{% trans %}In stock:{% endtrans %}<span>50+</span></p>
-                    <p class="sold-out"><i class="fa fa-ban"></i>{% trans %}Sold out{% endtrans %}</p>
-                </div>
-                <hr>
-                #}
                 <div id="product-price-section">
                     {% include "shoop/front/product/_detail_order_section.jinja" with context %}
                 </div>
@@ -115,21 +108,27 @@
         </div>
 
         {% if package_children %}
-            <hr>
-            <h2 class="section-title">{% trans %}Includes these products{% endtrans %}</h2>
-            <div class="product-carousel owl-carousel five">
-                {% for child in package_children %}
-                    {{ macros.product_box(child, show_description=False) }}
-                {% endfor %}
-            </div>
+            <section class="carousel-section">
+                <div class="title-bar light">
+                    <h2>{% trans %}Includes these products{% endtrans %}</h2>
+                </div>
+                <div class="product-carousel owl-carousel five">
+                    {% for child in package_children %}
+                        {{ macros.product_box(child, show_description=False) }}
+                    {% endfor %}
+                </div>
+            </section>
         {% elif package_parents %}
-            <hr>
-            <h2 class="section-title">{% trans %}Is also available in{% endtrans %}</h2>
-            <div class="product-carousel owl-carousel five">
-                {% for parent in package_parents %}
-                    {{ macros.product_box(parent, show_description=False) }}
-                {% endfor %}
-            </div>
+            <section class="carousel-section">
+                <div class="title-bar light">
+                    <h2>{% trans %}Is also available in{% endtrans %}</h2>
+                </div>
+                <div class="product-carousel owl-carousel five">
+                    {% for parent in package_parents %}
+                        {{ macros.product_box(parent, show_description=False) }}
+                    {% endfor %}
+                </div>
+            </section>
         {% endif %}
 
         {{ macros.render_cross_sell_products(

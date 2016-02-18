@@ -5,7 +5,7 @@
     <form role="form" method="post" action="">
         {% set forms = form.forms %}
         {% csrf_token %}
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">{% trans %}Billing address{% endtrans %}</h2>
             </div>
@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="order-for-company col-md-9 col-md-offset-3">
                             <hr>
-                            <h4><strong>{% trans %}Ordering for a company?{% endtrans %}</strong></h4>
+                            <h3 class="text-uppercase"><strong>{% trans %}Ordering for a company?{% endtrans %}</strong></h3>
                             <p>{% trans %}Please fill out these fields if you are ordering for a company.{% endtrans %}</p>
                         </div>
                     </div>
@@ -31,16 +31,20 @@
             </div>
         </div>
 
-        <div class="panel panel-primary">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">{% trans %}Shipping address{% endtrans %}</h2>
             </div>
             <div class="panel-body">
-                <div class="custom-checkbox">
-                    <input type="checkbox" name="same_as_billing" id="same_as_billing" value="1"{% if request.POST.get("same_as_billing", true) %} checked{% endif %}>
-                    <label for="same_as_billing">{% trans %}Ship to my billing address{% endtrans %}</label>
+                <div class="row">
+                    <div class="col-md-9 col-md-push-3">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" name="same_as_billing" id="same_as_billing" value="1"{% if request.POST.get("same_as_billing", true) %} checked{% endif %}>
+                            <label for="same_as_billing">{% trans %}Ship to my billing address{% endtrans %}</label>
+                        </div>
+                        <hr>
+                    </div>
                 </div>
-                <hr>
                 <div id="shipping" class="form-horizontal">
                     {% for field in forms.shipping %}
                         {{ bs3.field(field, layout="horizontal") }}

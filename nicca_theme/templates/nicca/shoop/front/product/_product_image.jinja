@@ -1,20 +1,14 @@
-<div id="product_{{ product.id }}" class="product-carousel carousel fade" data-ride="carousel" data-interval="false">
+<div id="product_{{ product.id }}" class="product-carousel carousel slide" data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
         {% for product_image in images %}
             <div class="item{% if product_image == primary_image %} active{% endif %}">
                 {% if loop|count > 1 %}
                     <a data-imagelightbox="image-multiple" href="{{ product_image.url }}" rel="gallery">
-                        <img src="{{ product_image|thumbnail(size=(750, 750), crop="smart", upscale=True) }}" alt="{{ product.name }}">
-                        <div class="inspect-icon" data-toggle="tooltip" title="Click for a full-sized image" data-placement="right">
-                            <i class="fa fa-search-plus"></i>
-                        </div>
+                        <img src="{{ product_image|thumbnail(size=(750, 750), crop="smart", upscale=True) }}" alt="{{ product.name }}" title="{% trans %}Click for a full-sized image{% endtrans %}">
                     </a>
                 {% else %}
                     <a data-imagelightbox="image" href="{{ product_image.url }}" rel="gallery">
-                        <img src="{{ product_image|thumbnail(size=(750, 750), crop="smart", upscale=True) }}" alt="{{ product.name }}">
-                        <div class="inspect-icon" data-toggle="tooltip" title="Click for a full-sized image" data-placement="right">
-                            <i class="fa fa-search-plus"></i>
-                        </div>
+                        <img src="{{ product_image|thumbnail(size=(750, 750), crop="smart", upscale=True) }}" alt="{{ product.name }}" title="{% trans %}Click for a full-sized image{% endtrans %}">
                     </a>
                 {% endif %}
             </div>
@@ -23,14 +17,22 @@
                 <img class="img-responsive no-image" alt="{{ product.name }}" src="{{ STATIC_URL }}nicca/img/no_image.png">
             </div>
         {% endfor %}
-    </div>
-</div>
-<div class="carousel-thumbnails owl-carousel thumbnails clearfix">
-    {% for product_image in images %}
-        {% if loop|count > 1 %}
-            <a href="#product_{{ product.id }}" class="thumb" data-slide-to="{{ loop.index0 }}">
-                <img src="{{ product_image|thumbnail(size=(200, 200), crop="smart", upscale=True)}}" alt="{{ product.name }}">
+        <div class="arrow-control-wrap">
+            <a class="left carousel-control" href="#product_{{ product.id }}" role="button" data-slide="prev">
+                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
             </a>
-        {% endif %}
-    {% endfor %}
+            <a class="right carousel-control" href="#product_{{ product.id }}" role="button" data-slide="next">
+                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <ol class="carousel-indicators">
+        {% for product_image in images %}
+            {% if loop|count > 1 %}
+                <li data-target="#product_{{ product.id }}" data-slide-to="{{ loop.index0 }}" {% if product_image == primary_image %}class="active"{% endif %}></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
 </div>

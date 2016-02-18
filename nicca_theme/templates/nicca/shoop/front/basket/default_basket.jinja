@@ -1,10 +1,13 @@
 {% extends "shoop/front/base.jinja" %}
 
 {% block title %}{% trans %}Checkout{% endtrans %}{% endblock %}
-{% block content_title %}{% trans %}Checkout{% endtrans %}{% endblock %}
+{% block content_title %}{% endblock %}
 
 {% block content %}
     <div class="container basket">
+        <div class="title-bar dark">
+            <h2>{% trans %}Checkout{% endtrans %}</h2>
+        </div>
         {% if basket.is_empty %}
             <div class="alert alert-danger">
                 {% trans %}Your shopping cart is empty.{% endtrans %}
