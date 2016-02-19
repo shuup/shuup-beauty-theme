@@ -104,7 +104,8 @@
             </button>
             <div class="logo">
                 <a href="/" data-toggle="tooltip" data-placement="bottom" title="{{ request.shop }} {% trans %}Home{% endtrans %}">
-                    <img src="{{ STATIC_URL }}nicca/img/logo.png" class="desktop" alt="{{ request.shop }} Logo">
+                    {% set cropped_logo = request.shop.logo|thumbnail(size=(500,500)) %}
+                    <img src="{% if cropped_logo %}{{ cropped_logo }}{% else %}{{ STATIC_URL }}nicca/img/logo_placeholder.png{% endif %}" class="desktop" alt="{{ request.shop }} Logo">
                 </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
