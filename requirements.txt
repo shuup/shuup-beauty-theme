@@ -2,3 +2,4 @@ https://github.com/shoopio/shoop/releases/download/v3.0.0/shoop-3.0.0-py2.py3-no
 -e .
 #PyYAML==3.11
 #beautifulsoup4==4.4.1
+https://github.com/shoopio/shoop-carousel/archive/v1.0.1.zip#egg=shoop-carousel==1.0.1
