@@ -10,5 +10,52 @@
         @media (min-width: @screen-md-min) {
             padding-left: 30px;
         }
+        .boxes {
+            list-style: none;
+            padding: 0;
+            li {
+                background: @brand-light;
+                padding: 15px;
+                display: inline-table;
+                margin: 0px 5px 5px 0px;
+                i, span {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+                i {
+                    font-size: 2em;
+                    padding-right: 15px;
+                    color: @gray-light;
+                }
+            }
+        }
     }
+    .product-tabs {
+        margin-top: 30px;
+        i {
+            margin-right: 5px;
+        }
+        .tab-content {
+            padding-top: 25px;
+        }
+    }
+}
+
+#product-price-section {
+    .amount .input-group {
+        width: 1%;
+        input {
+            width: 130px;
+        }
+    }
+    .price h2 {
+        margin-bottom: 0;
+    }
+    .btn-add-to-cart {
+        margin-top: 15px;
+    }
+}
+
+form.add-to-basket {
+    margin-bottom: 15px;
 }
