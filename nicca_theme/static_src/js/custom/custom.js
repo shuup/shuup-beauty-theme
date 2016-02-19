@@ -1,3 +1,31 @@
+window.showPreview = function showPreview(productId) {
+    var modalSelector = "#product-" + productId + "-modal";
+    var $productModal = $(modalSelector);
+    if ($productModal.length) {
+        $productModal.modal("show");
+        return;
+    }
+
+    // make sure modals disappear and are not "cached"
+    $(document).on("hidden.bs.modal", modalSelector, function() {
+        $(modalSelector).remove();
+    });
+
+    $.ajax({
+        url: "/xtheme/product_preview",
+        method: "GET",
+        data: {
+            id: productId
+        },
+        success: function(data) {
+            $("body").append(data);
+            $(modalSelector).modal("show");
+            updatePrice();
+            $(".selectpicker").selectpicker();
+        }
+    });
+};
+
 function updatePrice() {
     var $quantity = $("#product-quantity");
     if ($quantity.length === 0 || !$quantity.is(":valid")) {
@@ -29,19 +57,6 @@ function updatePrice() {
     });
 }
 
-function product_list_toggle(elem) {
-    if (elem.prop("checked")) {
-        $(".product-list .products").removeClass("grid").addClass("list");
-    } else {
-        $(".product-list .products").removeClass("list").addClass("grid");
-    }
-}
-
-function toggleCaption() {
-    var caption = $('.frontpage-carousel').find('.item.active').find('.item-caption');
-    caption.toggleClass('animate');
-}
-
 $(function() {
 
     $(document).on("change", ".variable-variation, #product-variations, #product-quantity", updatePrice);
@@ -62,15 +77,15 @@ $(function() {
         interval: 6000,
         cycle: true,
         pause: false
-    }).on('slid.bs.carousel slide.bs.carousel', toggleCaption).trigger('slid');
+    });
 
     // Set up owl carousel for product list with 5 items
     $(".owl-carousel.five").owlCarousel({
         margin: 30,
         nav: true,
         navText: [
-            '<i class="fa fa-chevron-left"></i>',
-            '<i class="fa fa-chevron-right"></i>'
+            '<i class="fa fa-angle-left"></i>',
+            '<i class="fa fa-angle-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
@@ -87,12 +102,12 @@ $(function() {
     });
 
     // Set up owl carousel for product list with 3 items
-    $(".owl-carousel.three").owlCarousel({
+    $(".owl-carousel.four").owlCarousel({
         margin: 30,
         nav: true,
         navText: [
-            '<i class="fa fa-chevron-left"></i>',
-            '<i class="fa fa-chevron-right"></i>'
+            '<i class="fa fa-angle-left"></i>',
+            '<i class="fa fa-angle-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
@@ -103,21 +118,9 @@ $(function() {
                 items : 2,
             },
             992: { // breakpoint from 992 up
-                items : 3,
+                items : 4,
             }
         }
-    });
-
-    // Set up owl carousel for product page's slider thumbnails.
-    $(".owl-carousel.thumbnails").owlCarousel({
-        margin: 15,
-        nav: $(this).find(".thumb").length > 4,
-        navText: [
-            "<i class='fa fa-chevron-left'></i>",
-            "<i class='fa fa-chevron-right'></i>"
-        ],
-        responsiveClass: true,
-        items: 4
     });
 
     //add tooltip triggers to data-attribute html with data-toggle=tooltip
@@ -136,12 +139,6 @@ $(function() {
     });
 
     $('.selectpicker select').selectpicker();
-
-    $(".toggle-view #view_toggler").bind("change", function() {
-        product_list_toggle($(this));
-    });
-
-    product_list_toggle($(".toggle-view #view_toggler"));
 
     //Enable carousel slide change by swiping
     $(".carousel-inner").swipe({

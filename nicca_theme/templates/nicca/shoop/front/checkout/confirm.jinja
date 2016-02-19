@@ -1,4 +1,5 @@
 {% extends "shoop/front/checkout/_base.jinja" %}
+{% from "shoop/front/macros.jinja" import render_field with context %}
 
 {% macro format_address(address) %}
 <address>
@@ -14,7 +15,7 @@
 {% endmacro %}
 
 {% macro method_panel(panel_title, method_title, address_title, method, address) %}
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h2 class="panel-title">{{ panel_title }}</h2>
         </div>
@@ -32,7 +33,16 @@
 {% endmacro %}
 {% block content %}
     <div class="container checkout">
-        {% include "shoop/front/checkout/_confirm_table.jinja" %}
+        <div class="panel panel-default panel-white-bg">
+            <div class="panel-heading">
+                <h1 class="panel-title">
+                    {% trans %}Confirmation{% endtrans %}
+                </h1>
+            </div>
+            <div class="panel-body">
+                {% include "shoop/front/checkout/_confirm_table.jinja" %}
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 {{ method_panel(
@@ -53,10 +63,11 @@
         {% if orderable %}
             <form role="form" method="post">
                 {% csrf_token %}
-                <div class="well">{{ bs3.field(form.comment) }}</div>
-                {{ bs3.field(form.marketing) }}
-                {{ bs3.field(form.accept_terms) }}
-                <button type="submit" class="btn btn-primary btn-lg">
+                {{ macros.render_field(form.comment) }}
+                {{ macros.render_field(form.marketing) }}
+                {{ macros.render_field(form.accept_terms) }}
+                <hr>
+                <button type="submit" class="btn btn-primary btn-lg pull-right">
                     <i class="fa fa-check"></i> {% trans %}Place Order{% endtrans %}
                 </button>
             </form>

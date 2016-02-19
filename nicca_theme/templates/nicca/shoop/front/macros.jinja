@@ -1,41 +1,42 @@
-{% macro product_box(product, show_image=True, show_description=False, class="product-box", thumbnail_size=(400,400), shop=None) %}
+{% macro product_box(product, show_image=True, show_description=False, extra_class="", thumbnail_size=(500,500), shop=None) %}
     {% set u = url("shoop:product", pk=product.pk, slug=product.slug) %}
-    {% if product.is_variation_parent()  %}
+    {% if product.is_variation_parent() %}
         {% set price_info = product.get_cheapest_child_price_info(request) %}
     {% else %}
         {% set price_info = product.get_price_info(request) %}
     {% endif %}
-    <a class="product-block {{ class }}" href="{{ u }}" rel="product-detail" id="product-{{ product.id }}" title="{{ product.name }}">
-        {% if show_image %}
-            <div class="product-image">
-                {% if product.primary_image %}
-                    {% set primary_image_thumb = product.primary_image|thumbnail(size=thumbnail_size, crop='smart', upscale=True) %}
-                    <img src="{{ primary_image_thumb }}" class="primary-image" alt="{{ product.name }}">
-                {% else %}
-                    <img src="{{ STATIC_URL }}nicca/img/no_image.png" class="no-image" alt="{{ product.name }}">
-                {% endif %}
-                <div class="overlay">
-                    <i class="fa fa-eye"></i>
-                </div>
-                {% if price_info.is_discounted %}
-                    <div class="product-labels">
-                        <span class="label label-danger">{% trans %}Sale{% endtrans %}</span>
-                    </div>
-                {% endif %}
-            </div>
-        {% endif %}
-        <div class="caption">
-            <p class="name">{{ product.name }}</p>
-            {# TODO: (TAX) Check following line (gets taxful price of product)  #}
-            <p class="price">{{ render_product_price(product, price_info, show_units=False) }}</p>
-            {% if show_description %}
-                <div class="description">
-                    {{ product.description|striptags|truncate(140)|safe }}
+    <div class="product-card {{ extra_class }}" id="product-{{ product.id }}">
+        <div class="overlay">
+            <button type="button" class="btn btn-preview" onclick="javascript:showPreview('{{ product.id }}')"><i class="fa fa-eye"></i> {% trans %}Preview{% endtrans %}</button>
+        </div>
+        <a href="{{ u }}" rel="product-detail" title="{{ product.name }}">
+            {% if price_info.is_discounted %}
+                <div class="labels">
+                    <span class="sale-badge">{{ -price_info.discount_rate|percent }}</span>
                 </div>
             {% endif %}
-            {% if shop %}<p class="shop">{{ shop }}</p>{% endif %}
-        </div>
-    </a>
+            {% if show_image %}
+                <div class="product-image">
+                    {% if product.primary_image %}
+                        {% set primary_image_thumb = product.primary_image|thumbnail(size=thumbnail_size, crop='smart', upscale=True) %}
+                        <img src="{{ primary_image_thumb }}" class="primary-image" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{{ STATIC_URL }}nicca/img/no_image.png" class="no-image" alt="{{ product.name }}">
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="detail-wrap">
+                <div class="name">{{ product.name }}</div>
+                {% if show_description and product.description %}
+                    <p class="description">{{ product.description|striptags|truncate(180)|safe }}</p>
+                {% endif %}
+                <div class="price">
+                    {{ render_product_price(product, price_info, show_units=False) }}
+                </div>
+                {% if shop %}<p class="shop">{{ shop }}</p>{% endif %}
+            </div>
+        </a>
+    </div>
 {% endmacro %}
 
 {% macro render_product_price(product, price_info, show_units=True) %}
@@ -62,13 +63,18 @@
 {% macro render_cross_sell_products(product, relation_type="", title="") %}
     {%- set cross_sell_products = shoop.product.get_product_cross_sells(product, relation_type) %}
     {% if cross_sell_products %}
-        <hr>
-        {% if title %}<h2 class="section-title">{{ title }}</h2>{% endif %}
-        <div class="product-carousel owl-carousel five">
-            {% for product in cross_sell_products %}
-                {{ product_box(product, show_description=False) }}
-            {% endfor %}
-        </div>
+        <section class="carousel-section">
+            {% if title %}
+                <div class="title-bar light">
+                    <h2>{{ title }}</h2>
+                </div>
+            {% endif %}
+            <div class="product-carousel owl-carousel five">
+                {% for product in cross_sell_products %}
+                    {{ product_box(product, show_description=False) }}
+                {% endfor %}
+            </div>
+        </section>
     {% endif %}
 {% endmacro %}
 

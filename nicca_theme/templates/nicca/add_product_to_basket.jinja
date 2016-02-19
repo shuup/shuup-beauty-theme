@@ -1,16 +1,11 @@
-<div class="cover-wrap">
-    <div class="text-wrap">
-        <div class="ready">
-            <i class="fa fa-check"></i>
-            <p>{% trans %}Product added to cart{% endtrans %}</p>
-        </div>
-        <div class="load">
-            <i class="fa fa-spinner fa-spin"></i>
-        </div>
-        <div class="error-msg">
-            <i class="fa fa-warning"></i>
-            <p>{% trans %}There was an error adding the product to the basket{% endtrans %}</p>
-        </div>
+<div class="cart-indicator" id="cart-indicator">
+    <div class="success-msg">
+        <i class="fa fa-check"></i>
+        <p>{% trans %}Product added to cart{% endtrans %}</p>
+    </div>
+    <div class="error-msg">
+        <i class="fa fa-warning"></i>
+        <p>{% trans %}There was an error adding the product to the shopping cart{% endtrans %}</p>
     </div>
 </div>
 
@@ -27,19 +22,16 @@
 
     // TODO: Show error message?
     function handleError(cover) {
+        cover.addClass('error'); // change to error message
         setTimeout(function() {
-            // Hide the loader and change to error message
-            cover.removeClass("loading").addClass('error');
-            setTimeout(function() {
-                // Hide the error message and the modal
-                cover.removeClass("error in");
-            }, 1750);
-        }, 500);
+            // Hide the error message and the modal
+            cover.removeClass("error in");
+        }, 2500);
     }
 
     function addToBasket(form) {
-        var cover = $(".cover-wrap");
-        cover.addClass("in loading");
+        var cover = $("#cart-indicator");
+        cover.addClass("in");
         $.ajax({
             url: form.attr("action"),
             method: "POST",
@@ -49,26 +41,15 @@
                     handleError(cover);
                     return;
                 }
-
                 updateNavigationBasket();
+                cover.addClass("success");
                 setTimeout(function() {
-                    // Hide the loader and show the message
-                    cover.removeClass("loading").addClass("loaded");
-                    setTimeout(function() {
-                        // Hide the message
-                        cover.removeClass("loaded");
-                        setTimeout(function() {
-                            // Hide the modal
-                            cover.removeClass("in");
-                        }, 250);
-                    }, 1500);
-                }, 500);
-
-
+                    // Hide the message
+                    cover.removeClass("success in"); // Hide the modal
+                }, 2500);
             },
             error: function() {
                 handleError(cover);
-
             }
         });
     }

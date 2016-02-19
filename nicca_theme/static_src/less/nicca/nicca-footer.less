@@ -1,43 +1,43 @@
 footer {
-    color: @brand-dark;
-
     ul {
         padding: 0;
         list-style: none;
+        .small();
     }
 
     .footer-top {
         padding: 30px 0px;
-        background: @brand-light;
+        background: @footer-bg;
 
-        a, a:visited, a:hover, a:focus {
-            color: @brand-dark;
-            font-size: 0.85em;
+        a {
+            color: @text-color;
+            &:hover, &:focus {
+                text-decoration: underline;
+                color: @brand-primary;
+            }
         }
 
         h4 {
-            font-family: @font-headline;
             text-transform: uppercase;
-            margin-top: 15px;
-            margin-bottom: 2px;
+            margin-top: 20px;
+            margin-bottom: 8px;
         }
 
         img {
-        height: 191px;
-        max-width: 210px;
+            height: 191px;
+            max-width: 210px;
         }
     }
 
     .footer-bottom {
         padding: 15px 0px;
         background: @brand-dark;
+        text-align: center;
 
         ul {
             margin: 0;
             li {
                 color: rgba(255,255,255,0.75);
-                font-size: 0.7em;
-                text-align: center;
             }
         }
     }

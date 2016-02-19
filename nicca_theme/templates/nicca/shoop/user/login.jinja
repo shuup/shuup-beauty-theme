@@ -6,36 +6,31 @@
 
 {% block content %}
 
-    {% for error in form.non_field_errors() %}
-        {{ macros.alert(error, mode="danger") }}
-    {% endfor %}
-
-    <div class="row">
-        <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-3">
-            <h1 class="page-header text-center">
-                {% trans %}Log in{% endtrans %}
-            </h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8 col-sm-push-2 col-md-6 col-md-push-3">
-            {% set demo_creds = get_demo_credentials() %}
-            {% if demo_creds %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-push-3">
+                {% for error in form.non_field_errors() %}
+                    {{ macros.alert(error, mode="danger") }}
+                {% endfor %}
                 <div class="alert alert-success">
-                    {{ _("You can use <b>%(demo_credentials)s</b> to log in.",
-                         demo_credentials=demo_creds) }}
+                    {{ _("You can use <b>admin/admin</b> to log in.") }}
                 </div>
-            {% endif %}
-            <div class="well">
-                <form role="form" method="post" action="{{ request.path }}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ next|default("") }}">
-                    {{ render_field(form.username) }}
-                    {{ render_field(form.password) }}
-                    <button type="submit" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-log-in"></i> {% trans %}Log in{% endtrans %}</button>
-                    <hr>
-                    <a href="{{ url("shoop:recover_password") }}">{% trans %}Forgot your password?{% endtrans %}</a>
-                </form>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">{% trans %}Log in{% endtrans %}</h1>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="post" action="{{ request.path }}">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ next|default("") }}">
+                            {{ render_field(form.username) }}
+                            {{ render_field(form.password) }}
+                            <button type="submit" class="btn btn-primary btn-block">{% trans %}Log in{% endtrans %}</button>
+                            <hr>
+                            <a href="{{ url("shoop:recover_password") }}">{% trans %}Forgot your password?{% endtrans %}</a>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

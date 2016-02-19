@@ -23,9 +23,7 @@
             </div>
             <div class="row">
                 {% for product in products if shoop.product.is_visible(product) %}
-                    <div class="col-sm-4 col-md-3 single-result">
-                        {{ macros.product_box(product, show_description=False, class="product-card box", thumbnail_size=(500,500)) }}
-                    </div>
+                    {{ macros.product_box(product, extra_class="search-view") }}
                 {% endfor %}
             </div>
         {% endif %}

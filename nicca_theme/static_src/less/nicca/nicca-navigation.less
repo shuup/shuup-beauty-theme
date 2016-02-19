@@ -1,12 +1,24 @@
 .site-nav {
-
+    margin-bottom: 0;
+    border: 0;
     .top-nav {
         .clearfix;
         background: @brand-dark;
         display: block;
 
-        .pull-left {
-            padding-left: 0px
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-left {
+            margin-left: -15px;
+            float: left;
+        }
+
+        .nav-right {
+            margin-right: -15px;
+            float: right;
         }
 
         .container > ul > li {
@@ -17,7 +29,7 @@
             > button {
                 border: 0;
                 background: none;
-                padding: 10px 15px 0px 15px;
+                padding: 8px 15px;
                 display: inline-block;
                 color: #fff;
                 transition: color 0.1s, background 0.1s;
@@ -25,17 +37,17 @@
                 text-transform: uppercase;
                 &:hover,
                 &:focus {
-                    color: @brand-accent;
+                    color: @brand-primary;
                     text-decoration: none;
                     i.menu-icon {
-                        color: @brand-accent;
+                        color: @brand-primary;
                     }
                 }
             }
         }
 
         i.menu-icon {
-            font-size: 16px;
+            font-size: 1.4rem;
             margin-right: 5px;
             color: #fff;
         }
@@ -70,7 +82,7 @@
                 z-index: 2;
             }
             &:after {
-                border-bottom: 7px solid @brand-light;
+                border-bottom: 7px solid @border-color;
                 border-left: 7px solid transparent;
                 border-right: 7px solid transparent;
                 margin-left: -1px;
@@ -145,14 +157,14 @@
             &:hover {
                 .icon-bars:after,
                 .icon-bars:before {
-                    background: @brand-accent;
+                    background: @brand-primary;
                 }
 
                 &.collapsed {
                     .icon-bars,
                     .icon-bars:after,
                     .icon-bars:before {
-                        background: @brand-accent;
+                        background: @brand-primary;
                     }
                 }
             }
@@ -203,28 +215,24 @@
 
         .logo {
             display: inline-block;
-            height: 25px;
-            line-height: 55px;
 
-            @media (min-width: @screen-sm-min) {
-                height: 33px;
-                max-width: 163px;
-                padding-left: 15px;
+            a {
+                display: block;
+                padding: 15px 0px;
             }
 
             img {
-                display: inline-block;
-                vertical-align: middle;
-                max-width: 100%;
-                max-height: 100%;
-                height: auto;
+                height: 25px;
                 width: auto;
+                @media (min-width: @screen-sm-min) {
+                    height: 46px;
+                }
             }
         }
 
         ul.navbar-right {
             float: right;
-            margin: 0 -15px 0 0;
+            margin: 0;
 
             @media (max-width: @screen-xs-max) {
                 > li {
@@ -245,12 +253,12 @@
                 background: 0;
                 position: relative;
                 &:hover {
-                    color: @brand-accent;
+                    color: @brand-primary;
                     &:before {
                         height: 5px;
                     }
                     i {
-                        color: @brand-accent;
+                        color: @brand-primary;
                     }
                 }
                 i {
@@ -270,24 +278,20 @@
                         height: 5px;
                     }
                     i {
-                        color: @brand-accent;
+                        color: @brand-primary;
                     }
                 }
             }
 
             .search-form {
-                padding: 13px;
+                padding: 20px 0px 16px 0px;
                 width: 100%;
 
                 @media (min-width: @screen-sm-min) {
-                    margin-right: 20px;
-                    width: 250px;
+                    width: 220px;
                 }
                 @media (min-width: @screen-md-min) {
-                    width: 420px;
-                }
-                @media (min-width: @screen-lg-min) {
-                    width: 420px;
+                    width: 300px;
                 }
 
                 .form-group {
@@ -304,7 +308,7 @@
                     .transition(all 0.25s);
                     &:focus,
                     &:active {
-                        border-bottom-color: @brand-accent;
+                        border-bottom-color: @brand-primary;
                     }
                 }
 
@@ -319,12 +323,12 @@
                     right: 0;
                     outline: 0;
                     .transition(color 0.25s);
-                    &:hover {
-                        color: @brand-accent;
+                    &:hover, &:focus {
+                        color: @brand-primary;
                     }
                     &:active {
                         .box-shadow(none);
-                        background: @brand-light;
+                        background: none;
                     }
                 }
 
