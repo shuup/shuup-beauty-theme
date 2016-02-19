@@ -39,22 +39,8 @@
         </div>
     </div>
 
-    {% set best_selling_products = shoop.general.get_best_selling_products() %}
-    {% if best_selling_products %}
-        <div class="container">
-            <section class="carousel-section">
-                <div class="title-bar light">
-                    <h2>{% trans %}Best selling products{% endtrans %}</h2>
-                </div>
-                <div class="product-carousel owl-carousel five">
-                    {% for product in best_selling_products if shoop.product.is_visible(product) %}
-                        {{ macros.product_box(product) }}
-                    {% endfor %}
-                </div>
-            </section>
-        </div>
-    {% endif %}
     <div class="container">
+        {% placeholder "category_bottom_extra" %}{% endplaceholder %}
         {% include "shoop/front/includes/_hot_deals_carousel.jinja" %}
     </div>
 

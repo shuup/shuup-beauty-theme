@@ -14,9 +14,14 @@
             </div>
         {% else %}
             {% include "shoop/front/basket/partials/table.jinja" %}
-            <a href="{{ url("shoop:checkout") }}" class="btn btn-primary btn-lg pull-right">
-                {% trans %}Proceed to checkout{% endtrans %} <i class="fa fa-angle-double-right"></i>
-            </a>
+            <div class="clearfix">
+                <a href="{{ url("shoop:checkout") }}" class="btn btn-primary btn-lg pull-right">
+                    {% trans %}Proceed to checkout{% endtrans %} <i class="fa fa-angle-double-right"></i>
+                </a>
+            </div>
         {% endif %}
+        <div class="clearfix">
+            {% placeholder "basket_extra" %}{% endplaceholder %}
+        </div>
     </div>
 {% endblock %}
