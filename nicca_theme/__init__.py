@@ -33,7 +33,9 @@ class NiccaThemeAppConfig(AppConfig):
     label = __name__
     provides = {
         "xtheme": __name__ + ":NiccaTheme",
+        "xtheme_plugin": [
+            "nicca_theme.plugins:NiccaProductHighlightPlugin",
+        ]
     }
-
 
 default_app_config = __name__ + ".NiccaThemeAppConfig"

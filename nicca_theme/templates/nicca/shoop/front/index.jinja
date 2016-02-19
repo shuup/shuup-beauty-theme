@@ -8,30 +8,21 @@
 
 {% block content %}
     <div class="container">
-        {% set best_selling_products = shoop.general.get_best_selling_products() %}
-        {% if best_selling_products %}
-            <section class="carousel-section">
-                <div class="title-bar light">
-                    <h2>{% trans %}Best selling products{% endtrans %}</h2>
-                </div>
-                <div class="product-carousel owl-carousel five">
-                    {% for product in best_selling_products if shoop.product.is_visible(product) %}
-                        {{ macros.product_box(product) }}
-                    {% endfor %}
-                </div>
-            </section>
-        {% endif %}
 
-        <section class="carousel-section">
-            <div class="title-bar light">
-                <h2>{% trans %}New products{% endtrans %}</h2>
-            </div>
-            <div class="product-carousel owl-carousel five">
-                {% for product in shoop.general.get_newest_products() if shoop.product.is_visible(product) %}
-                    {{ macros.product_box(product) }}
-                {% endfor %}
-            </div>
-        </section>
+        {% placeholder "front_content" %}
+            {% row %}
+                {% plugin "nicca_theme.product_highlight" %}
+                    type = "newest"
+                    title = "New Products"
+                {% endplugin %}
+            {% endrow %}
+            {% row %}
+                {% plugin "nicca_theme.product_highlight" %}
+                    type = "best_selling"
+                    title = "Best selling products"
+                {% endplugin %}
+            {% endrow %}
+        {% endplaceholder %}
 
         {% include "shoop/front/includes/_hot_deals_carousel.jinja" %}
     </div>

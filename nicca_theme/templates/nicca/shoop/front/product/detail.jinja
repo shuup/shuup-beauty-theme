@@ -49,15 +49,19 @@
                     <p class="text-muted"><small>{{ product.sku }}</small></p>
                 </div>
                 <div class="summary">
-                    {{ product.description|striptags|truncate(140)|safe }}
+                    {% if product.description %}
+                        {{ product.description|markdown|safe }}
+                    {% else %}
+                        {% trans %}No product description available.{% endtrans %}
+                    {% endif %}
                 </div>
                 <div class="price">
                     <h3>{{ macros.render_product_price(product, priceinfo) }}</h3>
                 </div>
                 {% if priceinfo.is_discounted %}
+                    {% set discount_percent = priceinfo.discount_rate|percent %}
                     <div class="discount">
                         <span class="label label-danger">
-                            {% set discount_percent = priceinfo.discount_rate|percent %}
                             {{- _("Save %(discount_percent)s", discount_percent=discount_percent) -}}
                         </span>
                     </div>
@@ -69,10 +73,10 @@
                 <hr>
                 <ul class="boxes">
                     <li class="delivery" data-toggle="tooltip" title="Free delivery within 3-6 working days" data-placement="bottom">
-                        <i class="fa fa-truck"></i><span>{% trans %}Free Delivery{% endtrans %}</span>
+                        <i class="fa fa-truck"></i><span>{% trans %}Delivery terms{% endtrans %}</span>
                     </li>
                     <li class="return" data-toggle="tooltip" title="If you are not satisfied to the product, you may return it for a refund within 30 days of receiving the order" data-placement="bottom">
-                        <i class="fa fa-reply"></i><span>{% trans %}30-Day Money Back Guarantee{% endtrans %}</span>
+                        <i class="fa fa-reply"></i><span>{% trans %}Refund terms{% endtrans %}</span>
                     </li>
                 </ul>
             </div>
@@ -81,22 +85,13 @@
 
         <div class="product-tabs" role="tabpanel">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"><i class="fa fa-align-left"></i>{% trans %}Description{% endtrans %}</a></li>
-                <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-file-text-o"></i>{% trans %}Details{% endtrans %}</a></li>
+                <li role="presentation" class="active"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><i class="fa fa-file-text-o"></i>{% trans %}Details{% endtrans %}</a></li>
                 {% if shoop.product.get_visible_attributes(product) %}
                     <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"><i class="fa fa-tags"></i>{% trans %}Attributes{% endtrans %}</a></li>
                 {% endif %}
             </ul>
-
             <div class="tab-content">
-                <div role="tabpanel" class="product-description tab-pane fade in active" id="tab1">
-                    {% if product.description %}
-                        {{ product.description|markdown|safe }}
-                    {% else %}
-                        {% trans %}No product description available.{% endtrans %}
-                    {% endif %}
-                </div>
-                <div role="tabpanel" class="product-attributes tab-pane fade" id="tab2">
+                <div role="tabpanel" class="product-attributes tab-pane fade in active" id="tab2">
                     {% include "shoop/front/product/_detail_details_section.jinja" %}
                 </div>
                 {% if shoop.product.get_visible_attributes(product) %}
@@ -192,6 +187,12 @@
                     activityIndicatorOff();
                 }
             });
+
+            // Hide carousel arrows if there is only one product image
+            var imageCount = $(".product-carousel").find(".item").length;
+            if (imageCount < 2) {
+                $(".arrow-control-wrap").hide();
+            };
         });
     </script>
 {% endblock %}
