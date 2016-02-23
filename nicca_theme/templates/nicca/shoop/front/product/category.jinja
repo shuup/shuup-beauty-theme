@@ -1,4 +1,10 @@
-{% extends "shoop/front/base.jinja" %}
+{% if request.is_ajax() %}
+    {% extends "nicca/base_ajax_content_only.jinja" %}
+    {% import "nicca/shoop/front/macros.jinja" as macros with context %}
+{% else %}
+    {% extends "shoop/front/base.jinja" %}
+{% endif %}
+
 
 {% block title %}{{ category.name }}{% endblock %}
 {% block content_title %}{% endblock %}
@@ -32,10 +38,20 @@
                 </div>
             </form>
         </div>
-        <div class="products grid row">
-            {% for product in products if shoop.product.is_visible(product) %}
-                {{ macros.product_box(product, extra_class="category-view") }}
-            {% endfor %}
+        <div id="ajax_content">
+        {% block ajax_content %}
+            <div class="products grid row">
+                {% set pagination = shoop.general.get_pagination_variables(products, 20) %}
+                {% for product in pagination.objects if shoop.product.is_visible(product) %}
+                    {{ macros.product_box(product, extra_class="category-view") }}
+                {% endfor %}
+            </div>
+            {% if pagination.is_paginated %}
+                <div class="clearfix">
+                    {{ macros.pagination(pagination.page, pagination.paginator) }}
+                </div>
+            {% endif %}
+        {% endblock %}
         </div>
     </div>
 
@@ -43,42 +59,14 @@
         {% placeholder "category_bottom_extra" %}{% endplaceholder %}
         {% include "shoop/front/includes/_hot_deals_carousel.jinja" %}
     </div>
-
 {% endblock %}
 
 {% block extrajs %}
     <script>
-
         $(function() {
             $("#sorter :input").change(function() {
                 $("#sorter").submit();
             });
         });
-
-        $(function() {
-
-            $(document).ready(function() {
-
-                function drawParallax() {
-                    requestAnimationFrame(drawParallax);
-                    parallaxScrollEvent();
-                }
-                drawParallax();
-
-            });
-
-            function parallaxScrollEvent() {
-
-                viewportTopPosition = $(window).scrollTop();
-
-                $('[data-parallax="true"]').each(function() {
-                    parallaxDistance = viewportTopPosition * $(this).attr('data-speed');
-                    $(this).css('transform','translate3d(0, ' + '-' + parallaxDistance +'px, 0)');
-                });
-
-            }
-
-        }());
-
     </script>
 {% endblock %}
