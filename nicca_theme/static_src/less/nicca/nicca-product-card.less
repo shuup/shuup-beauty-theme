@@ -14,10 +14,28 @@
         .make-xs-column(6);
         .make-sm-column(4);
         .make-md-column(3);
+        @media (max-width: @screen-xs-max) {
+            &:nth-child(2n+1) {
+                clear: both;
+            }
+        }
+        @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+            &:nth-child(3n+1) {
+                clear: both;
+            }
+        }
+        @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+            &:nth-child(4n+1) {
+                clear: both;
+            }
+        }
         @media (min-width: @screen-lg-min) {
             width: 20%;
             padding: 0px 15px;
             float: left;
+            &:nth-child(5n+1) {
+                clear: both;
+            }
         }
     }
 
