@@ -376,13 +376,12 @@
         @media (min-width: @screen-sm-min) {
             .navbar-nav {
                 margin: 0 auto;
-                display: table;
-                table-layout: auto;
+                display: flex;
                 width: 100%;
             }
 
             .navbar-nav > li {
-                display: table-cell;
+                flex: 1 auto;
                 float: none;
             }
 
@@ -392,7 +391,7 @@
         }
 
         ul.navbar-nav > li > a {
-            padding: 7px 0;
+            padding: 7px 15px;
             color: @brand-dark;
             .transition(background-color 0.25s);
             &:hover {
@@ -400,12 +399,6 @@
             }
             &:focus {
                 background: @brand-light;
-            }
-            &:first-child {
-                padding-left: 15px;
-            }
-            &:last-child {
-                padding-right: 0;
             }
         }
 
