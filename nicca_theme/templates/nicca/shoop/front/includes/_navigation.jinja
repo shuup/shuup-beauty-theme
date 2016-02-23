@@ -140,18 +140,6 @@
         <div class="container">
             <div class="collapse navbar-collapse" id="shoop-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Submenu<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Subcategory-1</a></li>
-                            <li><a href="#">Subcategory-2</a></li>
-                            <li><a href="#">Subcategory-3</a></li>
-                            <li><a href="#">Subcategory-4</a></li>
-                            <li><a href="#">Subcategory-5</a></li>
-                            <li><a href="#">Subcategory-6</a></li>
-                            <li><a href="#">Subcategory-7</a></li>
-                        </ul>
-                    </li>
                     {% for c in shoop.general.get_root_categories() recursive %}
                     {% set children = c.get_children() %}
                     <li>
