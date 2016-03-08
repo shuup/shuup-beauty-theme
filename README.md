@@ -1,7 +1,7 @@
-Nicca theme
-===========
+Shoop Beauty Theme
+==================
 
-This is the Nicca theme usable with Shoop.
+This is Shoop Beauty Theme for Shoop.
 
 Getting started
 ---------------
@@ -10,7 +10,7 @@ For Bash-based shells, this should do:
 
 ```bash
 pip install -r requirements.txt
-(cd nicca_theme && npm run build)
+(cd shoop_beauty_theme && npm run build)
 cd ..
 python -m shoop_workbench migrate
 python -m shoop_workbench createsuperuser
