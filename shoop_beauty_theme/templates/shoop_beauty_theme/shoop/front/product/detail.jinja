@@ -127,7 +127,7 @@
         {% endif %}
 
         {{ macros.render_cross_sell_products(
-            product, relation_type="related", title=_("Related products")
+            product, relation_type="computed", title=_("Users who bought this product also bought")
         ) }}
 
         {{ macros.render_cross_sell_products(
@@ -135,9 +135,8 @@
         ) }}
 
         {{ macros.render_cross_sell_products(
-            product, relation_type="computed", title=_("Users who bought this product also bought")
+            product, relation_type="related", title=_("Related products")
         ) }}
-
     </div>
 
 {% endblock %}
