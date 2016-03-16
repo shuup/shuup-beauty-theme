@@ -15,7 +15,7 @@
             padding: 0;
             li {
                 background: @brand-light;
-                padding: 15px;
+                padding: 10px;
                 display: inline-table;
                 margin: 0px 5px 5px 0px;
                 i, span {
@@ -23,10 +23,44 @@
                     vertical-align: middle;
                 }
                 i {
-                    font-size: 2em;
+                    font-size: 1.6em;
                     padding-right: 15px;
                     color: @gray-light;
                 }
+            }
+        }
+        .comparison {
+            list-style: none;
+            padding: 0;
+            vertical-align: middle;
+            li {
+                display: inline-table;
+                h4 {
+                    padding-right: 15px;
+                }
+            }
+            .btn-comparison {
+                background: transparent;
+                border-radius: 0;
+                border: 2px solid @brand-primary;
+                color: @brand-primary;
+                &:hover, &:focus, &:active {
+                    background: @brand-primary;
+                    border-color: transparent;
+                    color: #fff;
+                }
+            }
+        }
+        .icons {
+            font-size: 1.3em;
+            i {
+                color: @gray-light;
+                &:hover {
+                    color: @brand-primary;
+                }
+            }
+            i.fa-circle {
+                color: @brand-light;
             }
         }
     }
