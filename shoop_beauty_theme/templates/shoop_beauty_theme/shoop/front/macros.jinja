@@ -61,7 +61,7 @@
 {% endmacro %}
 
 {% macro render_cross_sell_products(product, relation_type="", title="") %}
-    {%- set cross_sell_products = shoop.product.get_product_cross_sells(product, relation_type) %}
+    {%- set cross_sell_products = shoop.product.get_product_cross_sells(product, relation_type, count=8) %}
     {% if cross_sell_products %}
         <section class="carousel-section">
             {% if title %}
