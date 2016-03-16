@@ -1,3 +1,38 @@
+.carousel {
+
+    .carousel-control {
+        background-image: none !important;
+        background-repeat: no-repeat !important;
+        position: absolute;
+        top: 50%;
+        margin-top: -18px;
+        text-align: center;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        color: @gray-dark;
+        text-shadow: none;
+        opacity: 0.6;
+
+        @media (max-width: @screen-xs-max) {
+            display: none;
+        }
+
+        &.left {
+            left: 15px;
+        }
+        &.right {
+            right: 15px;
+        }
+        span {
+            font-size: 2rem;
+            line-height: 36px;
+            margin-top: 0;
+            top: 0;
+        }
+    }
+}
+
 .carousel-section {
     margin-top: 30px;
     margin-bottom: 15px;
@@ -41,45 +76,4 @@
 
 .carousel-indicators {
     bottom: 0 !important;
-}
-
-.product-carousel.carousel {
-    .carousel-inner {
-        z-index: 2;
-        .item {
-            padding: 0px 30px;
-        }
-    }
-    .arrow-control-wrap {
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
-        left: 0;
-        right: 0;
-        z-index: 1;
-        .carousel-control {
-            background: none;
-            position: relative;
-            top: auto;
-            left: auto;
-            bottom: auto;
-            width: auto;
-            opacity: 1;
-            font-size: 4rem;
-            color: @text-muted;
-            text-shadow: none;
-            &.left {
-                float: left;
-            }
-            &.right {
-                float: right;
-            }
-        }
-    }
-    .carousel-indicators {
-        position: relative;
-        bottom: auto !important;
-        margin-bottom: 0;
-        margin-top: 10px;
-    }
 }

@@ -1,12 +1,12 @@
 {% extends "shoop/front/base.jinja" %}
 {% block content_title %}{% endblock %}
-{% block carousel %}
-    {% include "shoop/front/includes/_frontpage-carousel.jinja" %}
-{% endblock %}
 
 {% block extra_main_class %}index{% endblock %}
 
 {% block content %}
+
+{% placeholder frontpage_carousel %}{% endplaceholder %}
+
     <div class="container">
 
         {% placeholder "front_content" %}
@@ -25,5 +25,8 @@
         {% endplaceholder %}
 
         {% include "shoop/front/includes/_hot_deals_carousel.jinja" %}
+
+        {% include "shoop/front/includes/_sale_and_offers_carousel.jinja" %}
+
     </div>
 {% endblock %}

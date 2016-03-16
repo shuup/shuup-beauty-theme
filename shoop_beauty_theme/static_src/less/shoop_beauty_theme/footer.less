@@ -5,6 +5,12 @@ footer {
         .small();
     }
 
+    @media (max-width: 480px) {
+        .col-xxs-12 {
+            width: 100%;
+        }
+    }
+
     .footer-top {
         padding: 30px 0px;
         background: @footer-bg;
@@ -21,6 +27,8 @@ footer {
             text-transform: uppercase;
             margin-top: 20px;
             margin-bottom: 8px;
+            border-bottom: 1px solid lighten(@gray, 40%);
+            padding-bottom: 5px;
         }
 
         img {
