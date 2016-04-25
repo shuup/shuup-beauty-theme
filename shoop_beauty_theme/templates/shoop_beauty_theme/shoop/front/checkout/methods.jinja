@@ -4,29 +4,26 @@
 <div class="container checkout">
     <form role="form" method="post" action="">
         {% csrf_token %}
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">{% trans %}Shipping method{% endtrans %}</h2>
-                    </div>
-                    <div class="panel-body">
-                        {{ bs3.field(form.shipping_method) }}
-                    </div>
-                </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    {% trans %}Choose Shipping Method{% endtrans %}
+                </h2>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">{% trans %}Payment method{% endtrans %}</h2>
-                    </div>
-                    <div class="panel-body">
-                        {{ bs3.field(form.payment_method) }}
-                    </div>
-                </div>
+            <div class="panel-body">
+                {{ form.shipping_method }}
             </div>
         </div>
-
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    {% trans %}Choose Payment Method{% endtrans %}
+                </h2>
+            </div>
+            <div class="panel-body">
+                {{ form.payment_method }}
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary btn-lg pull-right">
             <i class="fa fa-check"></i> {% trans %}Continue{% endtrans %}
         </button>
