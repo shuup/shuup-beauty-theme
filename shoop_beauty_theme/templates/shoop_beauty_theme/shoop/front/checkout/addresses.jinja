@@ -98,6 +98,29 @@
             $(document).on("input change", "#billing :input", copyFieldValue);
             $("#same_as_billing").on("change", toggleCopyFields);
         }
+        function updateRegion() {
+            const country = $("#id_billing-country").val();
+            const $field = $("#id_billing-region");
+            $.ajax({
+                dataType: "json",
+                url: "/region-json/",
+                data: {"country": country},
+                success: function(data) {
+                    $field.parents(".form-group").toggle(data.length > 0);
+                    const field = '<select id="'+ $field.attr("id") +'" name="billing-region" class="form-control"></select>';
+                    $field.replaceWith(field);
+                    $.each(data, function(idx, region) {
+                        $("#id_billing-region").append($("<option></option>")
+                                .attr("value", region.code)
+                                .text(region.name));
+                    });
+                }
+
+            })
+        }
+        updateRegion();
+         $("#id_billing-country").change(updateRegion);
+
         activateCheckoutAddressCopy();
     });
 </script>

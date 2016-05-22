@@ -35,6 +35,9 @@ class ShoopBeautyThemeAppConfig(AppConfig):
         "xtheme": __name__ + ":ShoopBeautyTheme",
         "xtheme_plugin": [
             "shoop_beauty_theme.plugins:ProductHighlightPlugin",
+        ],
+        "front_urls": [
+            "shoop_beauty_theme.urls:urlpatterns"
         ]
     }
 
