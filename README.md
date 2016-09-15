@@ -3,7 +3,7 @@ Shoop Beauty Theme
 
 This is Shoop Beauty Theme for Shoop.
 
-Version 1.0.0 is compatible with Shoop [Shoop 4.0.0][1].
+Version 1.0.0 is compatible with [Shoop 4.0.0][1].
 
 Getting started
 ---------------
