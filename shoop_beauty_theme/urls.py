@@ -1,8 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, re_path
 
 from shoop_beauty_theme.views import region_json
 
 urlpatterns = patterns(
-    '',
-    url(r'^region-json/', region_json),
+    "",
+    re_path(r"^region-json/", region_json),
 )
