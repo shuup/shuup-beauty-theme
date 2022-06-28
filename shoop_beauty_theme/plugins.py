@@ -1,7 +1,11 @@
 from django import forms
-from shoop.front.template_helpers.general import get_newest_products, get_best_selling_products, get_random_products
+from shoop.front.template_helpers.general import (
+    get_newest_products,
+    get_best_selling_products,
+    get_random_products,
+)
 from shoop.xtheme.plugins._base import TemplatedPlugin  # TODO: FIX THIS.
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class ProductHighlightPlugin(TemplatedPlugin):
@@ -10,12 +14,18 @@ class ProductHighlightPlugin(TemplatedPlugin):
     template_name = "shoop_beauty_theme/highlight_plugin.jinja"
     fields = [
         ("title", forms.CharField(required=False, initial="")),
-        ("type", forms.ChoiceField(choices=[
-            ("newest", "Newest"),
-            ("best_selling", "Best Selling"),
-            ("random", "Random"),
-        ], initial="newest")),
-        ("count", forms.IntegerField(min_value=1, initial=8))
+        (
+            "type",
+            forms.ChoiceField(
+                choices=[
+                    ("newest", "Newest"),
+                    ("best_selling", "Best Selling"),
+                    ("random", "Random"),
+                ],
+                initial="newest",
+            ),
+        ),
+        ("count", forms.IntegerField(min_value=1, initial=8)),
     ]
 
     def get_context_data(self, context):
@@ -33,5 +43,5 @@ class ProductHighlightPlugin(TemplatedPlugin):
         return {
             "request": context["request"],
             "title": self.config.get("title"),
-            "products": products
+            "products": products,
         }
